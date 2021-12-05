@@ -30,7 +30,7 @@ configure do
 	)'
 end
 
-get '/' do
+get '/' do 
 	# выбираем список постов из бд
 	@results = @db.execute 'select * from Posts order by id desc'
 
