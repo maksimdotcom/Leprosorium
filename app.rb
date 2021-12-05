@@ -31,7 +31,10 @@ configure do
 end
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
+	# выбираем список постов из бд
+	@results = @db.execute 'select * from Posts order by id desc'
+
+	erb :index
 end
 
 # браузер получает данные с сервера
@@ -49,6 +52,7 @@ post '/new' do
 		return erb :new
 	end
 
+	# сохранение данных в бд
 	@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 
 	erb "You typed: #{content}"
