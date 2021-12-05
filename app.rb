@@ -74,3 +74,14 @@ get '/details/:post_id' do
 
 	erb :details
 end
+
+post '/details/:post_id' do 
+
+	# получаем переменную из  url'a
+	post_id = params[:post_id]	
+
+	# получаем переменную из post  запроса
+	content = params[:content]
+
+	erb "comment: #{content}, for post #{post_id}"
+end
